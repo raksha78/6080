@@ -23,7 +23,6 @@ pipelines:
       - name: S_DockerBuild_6080_0007
         type: DockerBuild
         configuration:
-          affinityGroup: BasicTest
           dockerFileLocation: .
           dockerFileName: Dockerfile
           dockerImageName:  $env1
@@ -38,7 +37,6 @@ pipelines:
             - echo "uh oh, something went wrong"
         configuration:
           nodePool: k8sNodePool
-          affinityGroup: BasicTest
           autoPublishBuildInfo: true
           targetRepository: docker-local
           integrations:
