@@ -24,7 +24,6 @@ pipelines:
         type: DockerBuild
         configuration:
           nodePool: u16dynamic
-          affinityGroup: BasicTest
           dockerFileLocation: .
           dockerFileName: Dockerfile
           dockerImageName:  $env1
@@ -38,7 +37,6 @@ pipelines:
           onComplete: 
             - echo "Cleaning up some stuff"
         configuration:
-          affinityGroup: BasicTest
           autoPublishBuildInfo: true
           targetRepository: docker-local
           integrations:
