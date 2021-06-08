@@ -1,0 +1,26 @@
+resources:
+  - name: repo
+    type: GitRepo
+    configuration:
+      gitProvider: raksha78_github                     
+      path: raksha78/6080
+      branches:
+        include: ^main$
+ 
+pipelines: 
+  - name: Pipeline_S_DockerBuild_6080_0001
+    configuration:
+      environmentVariables:
+        readOnly:
+          env1: $env1
+    steps:
+      - name: S_DockerBuild_6080_0001
+        type: DockerBuild
+        configuration:
+          affinityGroup: BasicTest
+          dockerFileLocation: .
+          dockerFileName: Dockerfile
+          dockerImageName:  $env1
+          dockerImageTag: latest
+          inputResources:
+            - name: repo
