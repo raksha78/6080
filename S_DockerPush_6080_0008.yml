@@ -34,8 +34,8 @@ pipelines:
       - name: S_DockerPush_6080_0008
         type: DockerPush
         execution:
-          onFailure:
-            - echo "uh oh, something went wrong"
+          onComplete: 
+            - echo "Cleaning up some stuff"
         configuration:
           nodePool: k8sNodePool
           affinityGroup: BasicTest
