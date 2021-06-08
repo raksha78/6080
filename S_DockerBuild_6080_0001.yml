@@ -12,11 +12,15 @@ pipelines:
     configuration:
       environmentVariables:
         readOnly:
-          env1: $env1
+          env1: u20-install.jfrog-pipelines.com/docker-local/node
     steps:
       - name: S_DockerBuild_6080_0001
         type: DockerBuild
+        execution:
+          onStart:
+            - echo "Preparing for work..."
         configuration:
+          nodePool: k8sNodePool
           affinityGroup: BasicTest
           dockerFileLocation: .
           dockerFileName: Dockerfile
