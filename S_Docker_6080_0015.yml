@@ -1,0 +1,49 @@
+resources:
+  - name: repo
+    type: GitRepo
+    configuration:
+      gitProvider: raksha78_github                     
+      path: raksha78/6080
+      branches:
+        include: ^main$
+  - name: docker_linux
+    type: BuildInfo
+    configuration:
+      sourceArtifactory: art_v
+      buildName: docker_linux
+      buildNumber: 1
+ 
+pipelines: 
+  - name: Pipeline_S_DockerPush_6080_0015
+    configuration:
+      environmentVariables:
+        readOnly:
+          env1: u20-install.jfrog-pipelines.com/docker-local/node
+    steps:
+      - name: S_DockerBuild_6080_0015
+        type: DockerBuild
+        configuration:
+          nodePool: u16dynamic
+          affinityGroup: BasicTest
+          dockerFileLocation: .
+          dockerFileName: Dockerfile
+          dockerImageName:  $env1
+          dockerImageTag: latest
+          inputResources:
+            - name: repo
+            
+      - name: S_DockerPush_6080_0015
+        type: DockerPush
+        execution:
+          onFailure:
+            - echo "uh oh, something went wrong"
+        configuration:
+          affinityGroup: BasicTest
+          autoPublishBuildInfo: true
+          targetRepository: docker-local
+          integrations:
+            - name: art_v
+          inputSteps:
+            - name: S_DockerBuild_6080_0015
+          outputResources:
+            - name: docker_linux
