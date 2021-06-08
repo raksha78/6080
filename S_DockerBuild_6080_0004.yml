@@ -1,0 +1,30 @@
+resources:
+  - name: repo
+    type: GitRepo
+    configuration:
+      gitProvider: raksha78_github                     
+      path: raksha78/6080
+      branches:
+        include: ^main$
+ 
+pipelines: 
+  - name: Pipeline_S_DockerBuild_6080_0004
+    configuration:
+      environmentVariables:
+        readOnly:
+          env1: u20-install.jfrog-pipelines.com/docker-local/node
+    steps:
+      - name: S_DockerBuild_6080_0004
+        type: DockerBuild
+        execution:
+          onComplete: 
+            - echo "Cleaning up some stuff"
+        configuration:
+          nodePool: k8sNodePool
+          affinityGroup: BasicTest
+          dockerFileLocation: .
+          dockerFileName: Dockerfile
+          dockerImageName:  $env1
+          dockerImageTag: latest
+          inputResources:
+            - name: repo
