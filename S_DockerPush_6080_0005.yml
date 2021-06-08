@@ -14,7 +14,7 @@ resources:
       buildNumber: 1
  
 pipelines: 
-  - name: Pipeline_S_DockerBuild_6080_0005
+  - name: Pipeline_S_DockerPush_6080_0005
     configuration:
       environmentVariables:
         readOnly:
