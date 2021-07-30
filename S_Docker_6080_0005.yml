@@ -36,7 +36,6 @@ pipelines:
           onStart:
             - echo "Preparing for work..."
         configuration:
-          nodePool: k8sNodePool
           autoPublishBuildInfo: true
           targetRepository: docker-local
           integrations:
