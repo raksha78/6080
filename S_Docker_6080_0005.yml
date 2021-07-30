@@ -18,7 +18,7 @@ pipelines:
     configuration:
       environmentVariables:
         readOnly:
-          env1: u20-install.jfrog-pipelines.com/docker-local/node
+          env1: rgrsaastest1.jfrogdev.org/docker-local/node
     steps:
       - name: S_DockerBuild_6080_0005
         type: DockerBuild
