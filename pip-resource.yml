@@ -1,7 +1,0 @@
-resources:
-   - name: "myAppRepoallok"
-     type: "GitRepo"
-     configuration:
-       gitProvider: raksha78_github            
-       path: raksha78/bugfix-6256
-   

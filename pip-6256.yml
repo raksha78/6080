@@ -1,0 +1,23 @@
+resources:
+   - name: "myAppRepoallok1"
+     type: GitRepo
+     configuration:
+       gitProvider: raksha78_github            
+       path: raksha78/bugfix-6256
+   - name: "myAppRepoallok2"
+     type: PropertyBag
+     configuration:
+       gitProvider: raksha78_github            
+       path: raksha78/bugfix-6256
+pipelines:
+ - name: pipeline_1
+   steps:
+     - name: step_1
+       type: Bash
+       configuration:
+         inputResources:
+           - name: "myAppRepoallok1"
+           - name: "myAppRepoallok2"
+       execution:
+         onExecute:
+           - echo $MY_MESSAGE
