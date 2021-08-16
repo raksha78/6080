@@ -1,10 +1,10 @@
 resources:
-   - name: "myAppRepoallok1"
+   - name: "myAppRepoallok3"
      type: GitRepo
      configuration:
        gitProvider: raksha78_github            
        path: raksha78/bugfix-6256
-   - name: "myAppRepoallok2"
+   - name: "myAppRepoallok3"
      type: PropertyBag
      configuration:
        gitProvider: raksha78_github            
@@ -16,8 +16,8 @@ pipelines:
        type: Bash
        configuration:
          inputResources:
-           - name: "myAppRepoallok1"
-           - name: "myAppRepoallok2"
+           - name: "myAppRepoallok3"
+           - name: "myAppRepoallok3"
        execution:
          onExecute:
            - echo $MY_MESSAGE
